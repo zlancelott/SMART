@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Exception;
+use Auth;
 
 class UserController extends Controller
 {
@@ -19,7 +20,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::paginate(30);
+        $users = User::orderBy('id')->paginate(30);
 
         return view('user.index', compact('users'));
     }
@@ -74,6 +75,9 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+        if ($user->profile == config('profiles.superadmin') && !Auth::user()->isSuperAdmin())
+            abort(403, 'Permissão negada.');
+
         return view('user.edit', compact('user'));
     }
 
@@ -87,6 +91,9 @@ class UserController extends Controller
     public function update(UserRequest $request, User $user)
     {
         try {
+
+            if ($user->profile == config('profiles.superadmin') && !Auth::user()->isSuperAdmin())
+                abort(403, 'Permissão negada.');
             
             $user->fill($request->all())->update();
         

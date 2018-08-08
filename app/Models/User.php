@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Carbon\Carbon;
 
 class User extends Authenticatable
 {
@@ -19,7 +20,7 @@ class User extends Authenticatable
     ];
 
     protected $appends = [
-        'profile_description'
+        'profile_description', 'created', 'updated'
     ];
 
     /**
@@ -34,6 +35,16 @@ class User extends Authenticatable
     public function setPasswordAttribute($password)
     {   
         $this->attributes['password'] = bcrypt($password);
+    }
+
+    public function getUpdatedAttribute()
+    {
+        return Carbon::parse($this->attributes['created_at'])->format('d/m/Y H:m:i');
+    }
+
+    public function getCreatedAttribute()
+    {
+        return Carbon::parse($this->attributes['created_at'])->format('d/m/Y H:m:i');
     }
 
     public function getProfileDescriptionAttribute()
