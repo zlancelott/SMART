@@ -34,3 +34,13 @@
 .skin-black .main-header .navbar .nav>.active>a {
     background-color: #1e282c;
 }
+
+.btn-smart {
+    color: white;
+    background-color: #222d32;
+    border-color: #1e282c;
+}
+
+.btn-smart:hover {
+    color: white;
+}

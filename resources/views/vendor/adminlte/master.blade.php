@@ -65,5 +65,7 @@
 
 @yield('adminlte_js')
 
+{{ Html::script('js/util.js') }}
+
 </body>
 </html>
