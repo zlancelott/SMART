@@ -22,7 +22,7 @@ class Station extends Model
 
     public function getTypeDescriptionAttribute()
     {
-        return $this->attributes['type'] == config('station.simpple') ? 'Simples' : 'Forno';
+        return $this->attributes['type'] == config('stations.simple') ? 'Simples' : 'Forno';
     }
 
     public function getUpdatedAttribute()

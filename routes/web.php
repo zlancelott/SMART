@@ -18,6 +18,7 @@ Route::get('/', function () {
 Route::group(['middleware' => ['auth']], function() {
     
     Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/operation', 'OperationController@index')->name('operation');
 
     Route::group(['middleware' => ['admin']], function() {
 

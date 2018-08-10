@@ -41,6 +41,12 @@ class AppServiceProvider extends ServiceProvider
                 ]);
             }
 
+            $event->menu->add([
+                'text' => 'Operação',
+                'url'  => '/operation',
+                'icon' => 'align-center',
+            ]);
+
 
             $event->menu->add('PERFIL');
 
