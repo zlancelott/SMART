@@ -3,9 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\StationRequest;
+use App\Models\Station;
+use App\Repositories\StationRepository;
 
 class StationController extends Controller
 {
+    protected $stationRep;
+
+    public function __construct(StationRepository $station)
+    {
+        $this->stationRep = $station;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +23,9 @@ class StationController extends Controller
      */
     public function index()
     {
-        //
+        $stations = Station::with('readers')->paginate(30);
+
+        return view('station.index', compact('stations'));
     }
 
     /**
@@ -23,7 +35,7 @@ class StationController extends Controller
      */
     public function create()
     {
-        //
+        return view('station.create');
     }
 
     /**
@@ -32,9 +44,17 @@ class StationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StationRequest $request)
     {
-        //
+        $station = $this->stationRep->save($request);
+
+        if ($station['status']) {
+            return redirect()->route('station.edit', ['id' => $station['id']])
+                             ->with(['message' => $station['message'], 'class' => 'alert-success']);
+        } else {
+            return redirect()->route('station.create')
+                             ->with(['message' => $station['message'], 'class' => 'alert-danger']);
+        }
     }
 
     /**
@@ -54,9 +74,9 @@ class StationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Station $station)
     {
-        //
+        return view('station.edit', compact('station'));
     }
 
     /**
@@ -66,9 +86,17 @@ class StationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StationRequest $request, Station $station)
     {
-        //
+        $station = $this->stationRep->update($station->id, $request);
+
+        if ($station['status']) {
+            return redirect()->route('station.edit', ['id' => $station['id']])
+                             ->with(['message' => $station['message'], 'class' => 'alert-success']);
+        } else {
+            return redirect()->route('station.create')
+                             ->with(['message' => $station['message'], 'class' => 'alert-danger']);
+        }
     }
 
     /**
@@ -77,8 +105,18 @@ class StationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Station $station)
     {
-        //
+        try {
+            
+            $station->delete();
+        
+            return redirect()->route('station.index')
+                            ->with(['message' => 'Estação deletada com sucesso.', 'class' => 'alert-success']);
+        } catch(Exception $ex) {
+
+            return redirect()->route('station.index')
+                            ->with(['message' => 'Erro ao deletear estação. Tente novamente.', 'class' => 'alert-danger']);
+        }
     }
 }

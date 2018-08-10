@@ -37,7 +37,7 @@
                                 <td>{{ $user->updated }}</td>
                                 <td>
                                     
-                                    <a href="{{ route('user.show', $user->id) }}" alt="Visualizar informações do usuário" title="Visualizar informações do usuário" class="btn btn-default btn-sm"><i class="fa fa-eye"></i></a>                                    
+                                    {{-- <a href="{{ route('user.show', $user->id) }}" alt="Visualizar informações do usuário" title="Visualizar informações do usuário" class="btn btn-default btn-sm"><i class="fa fa-eye"></i></a>                                     --}}
                                     
                                     @if (Auth::user()->isSuperAdmin())
                                         <a href="{{ route('user.edit', $user->id) }}" alt="Editar usuário" title="Editar usuário" class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i></a>

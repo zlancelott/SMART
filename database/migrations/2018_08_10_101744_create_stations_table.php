@@ -17,8 +17,8 @@ class CreateStationsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->smallInteger('type');
-            $table->smallInteger('readers');
-            $table->smallInteger('zones');
+            $table->smallInteger('number_readers');
+            $table->smallInteger('number_zones');
             $table->timestamps();
         });
     }

@@ -33,6 +33,12 @@ class AppServiceProvider extends ServiceProvider
                     'url'  => '/user',
                     'icon' => 'users',
                 ]);
+
+                $event->menu->add([
+                    'text' => 'Estações',
+                    'url'  => '/station',
+                    'icon' => 'bolt',
+                ]);
             }
 
 
