@@ -8,7 +8,7 @@
 
             @if ($station->type == config('stations.oven'))
                 <div class="col-md-8">
-                    <div class="box box-default no-padding">
+                    <div class="box box-default no-padding" id="station{{ $station->id }}">
                         <!-- /.box-header -->
                         <div class="box-body station">
                             <div class="col-md-12">
@@ -95,7 +95,7 @@
                 </script>
             @else
                 <div class="col-md-4">
-                    <div class="box box-default no-padding">
+                    <div class="box box-default no-padding" id="station{{ $station->id }}">
                         <!-- /.box-header -->
                         <div class="box-body station">
                             <div class="col-md-12">
@@ -141,11 +141,40 @@
 
     </div>
 
-    <div class="section-status">
-        <strong>STATUS: Linha de produção operante {{ date('m/d/Y H:m') }}</strong>
-    </div>
-
     <script>
+
+        $(function () {
+
+            var estacoes = [];
+
+            @foreach ($stations as $station)
+                estacoes.push({{ $station->id }});
+            @endforeach
+
+            setInterval(() => setDanger(estacoes), 7000);
+
+        });
+
+        function setDanger(estacoes) {
+
+            var id = estacoes[Math.floor(Math.random() * estacoes.length)];
+
+            $('#station' + id).removeClass('box-default').addClass('box-danger');
+            $('#station' + id + ' .widget-user-header').removeClass('bg-gray').addClass('bg-red');
+
+            $('#alarme').text('Alarme na ' + $('#station' + id + ' h4').text())
+
+            for (var i = 0; i < estacoes.length; i++) {
+                
+                if (estacoes[i] !== id) {
+                    $('#station' + estacoes[i]).removeClass('box-danger').addClass('box-default');
+                    $('#station' + estacoes[i] + ' .widget-user-header').removeClass('bg-red').addClass('bg-gray');
+                }
+                
+            }
+
+        }
+
         function formatarDataHora(data, out) {
 
             var out = out || false;

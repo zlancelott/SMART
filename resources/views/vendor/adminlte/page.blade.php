@@ -126,6 +126,13 @@
         </div>
         <!-- /.content-wrapper -->
 
+        <footer class="main-footer">
+            <div class="pull-right hidden-xs">
+                <b>v2018.07.15.01</b>
+            </div>
+            <strong>STATUS: Linha de produção operante {{ date('m/d/Y H:m') }} | <span id="alarme"></span> </strong>
+        </footer>
+
     </div>
     <!-- ./wrapper -->
 @stop
