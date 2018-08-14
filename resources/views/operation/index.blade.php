@@ -16,7 +16,7 @@
                                     <div class="widget-user-header bg-gray">
                                         <h4>{{ $station->name }}</h4>
                                     </div>
-                                    <div class="col-md-4 no-padding">
+                                    <div class="col-md-3 no-padding">
                                         <div class="box-footer no-padding">
                                             <ul class="nav nav-stacked">
                                                 <li id="serial{{ $station->id }}"><a href="#">Serial <span class="pull-right badge bg-gray"></span></a></li>
@@ -25,21 +25,21 @@
                                             </ul>
                                         </div>
                                     </div>
-                                    <div class="col-md-8">
+                                    <div class="col-md-9">
                                         <div class="box-footer no-padding">
                                             <div class="box box-solid">
                                                 <div class="box-body">
                                                     <h4 class="zonas">
                                                         SP / PV - SUPERIOR / INFERIOR
                                                     </h4>
-                                                    <div class="row">
+                                                    <div class="row" style="margin-left: 0px">
                                                         @for ($i = 0; $i < $station->number_zones; $i++)
                                                             <div class="col-xs-1">
                                                                 <input class="form-control input-sm estacao{{ $station->id . $i }}" type="text" readonly style="padding: 0px; text-align: center">
                                                             </div>
                                                         @endfor
                                                     </div>
-                                                    <div class="row" style="margin-top: 4px">
+                                                    <div class="row" style="margin-top: 4px; margin-left: 0px">
                                                         @for ($i = 0; $i < $station->number_zones; $i++)
                                                             <div class="col-xs-1">
                                                                 <input class="form-control input-sm estacao{{ $station->id . $i }}" type="text" readonly style="padding: 0px; text-align: center">
@@ -52,14 +52,14 @@
                                         <div class="box-footer no-padding">
                                             <div class="box box-solid">
                                                 <div class="box-body">
-                                                    <div class="row">
+                                                    <div class="row" style="margin-left: 0px">
                                                         @for ($i = 0; $i < $station->number_zones; $i++)
                                                             <div class="col-xs-1">
                                                                 <input class="form-control input-sm estacao{{ $station->id . $i }}" type="text" readonly style="padding: 0px; text-align: center">
                                                             </div>
                                                         @endfor
                                                     </div>
-                                                    <div class="row" style="margin-top: 4px">
+                                                    <div class="row" style="margin-top: 4px; margin-left: 0px">
                                                         @for ($i = 0; $i < $station->number_zones; $i++)
                                                             <div class="col-xs-1">
                                                                 <input class="form-control input-sm estacao{{ $station->id . $i }}" type="text" readonly style="padding: 0px; text-align: center">
@@ -162,7 +162,7 @@
             $('#station' + id).removeClass('box-default').addClass('box-danger');
             $('#station' + id + ' .widget-user-header').removeClass('bg-gray').addClass('bg-red');
 
-            $('#alarme').text('Alarme na ' + $('#station' + id + ' h4').text())
+            $('#alarme').text('Alarme na ' + $('#station' + id + ' h4').text());
 
             for (var i = 0; i < estacoes.length; i++) {
                 

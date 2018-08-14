@@ -66,3 +66,8 @@
     background-color: white;
     padding: 20px;
 }
+
+.col-xs-1 {
+    width: 7.333333% !important;
+    padding: 0px 3px;
+}
