@@ -61,3 +61,8 @@
 .box .box-station {
     border-top: 0px;
 }
+
+.section-status {
+    background-color: white;
+    padding: 20px;
+}

@@ -21,8 +21,8 @@ class AppServiceProvider extends ServiceProvider
             $event->menu->add('MENU PRINCIPAL');
             
             $event->menu->add([
-                'text' => 'Home',
-                'url'  => '/home',
+                'text' => 'Operação',
+                'url'  => '/operation',
                 'icon' => 'home',
             ]);
 
@@ -41,11 +41,7 @@ class AppServiceProvider extends ServiceProvider
                 ]);
             }
 
-            $event->menu->add([
-                'text' => 'Operação',
-                'url'  => '/operation',
-                'icon' => 'align-center',
-            ]);
+            
 
 
             $event->menu->add('PERFIL');

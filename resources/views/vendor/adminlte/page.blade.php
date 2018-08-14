@@ -126,13 +126,6 @@
         </div>
         <!-- /.content-wrapper -->
 
-        <footer class="main-footer">
-            <div class="pull-right hidden-xs">
-                <b>v2018.xx.xx.xx</b>
-            </div>
-            <strong>STATUS: </strong>
-        </footer>
-
     </div>
     <!-- ./wrapper -->
 @stop
