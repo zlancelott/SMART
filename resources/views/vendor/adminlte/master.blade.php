@@ -30,7 +30,7 @@
 
     @yield('adminlte_css')
 
-    {{ Html::style('css/custom.css') }}
+    {{ Html::style('css/custom.css?v=1.0.1') }}
 
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
