@@ -24,6 +24,7 @@ Route::group(['middleware' => ['auth']], function() {
 
         Route::resource('user', 'UserController');
         Route::resource('station', 'StationController');
+        Route::resource('profile', 'ProfileController');
 
     });
 

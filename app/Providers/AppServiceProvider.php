@@ -39,6 +39,12 @@ class AppServiceProvider extends ServiceProvider
                     'url'  => '/station',
                     'icon' => 'bolt',
                 ]);
+
+                $event->menu->add([
+                    'text' => 'Perfis',
+                    'url'  => '/profile',
+                    'icon' => 'male',
+                ]);
             }
 
             
