@@ -25,7 +25,7 @@ class PageRequest extends FormRequest
     {
         return [
             'name' => 'required|max:255',
-            'url' => 'required|max:255',
+            'route' => 'required|max:255',
         ];
     }
 
@@ -33,7 +33,7 @@ class PageRequest extends FormRequest
     {
         return[
             'name' => 'Nome',
-            'url' => 'URL',
+            'route' => 'Rota',
         ];
 
     }

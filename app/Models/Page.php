@@ -8,7 +8,7 @@ use Carbon\Carbon;
 class Page extends Model
 {
     protected $fillable = [
-        'name', 'url'
+        'name', 'route'
     ];
 
     protected $appends = [
@@ -27,6 +27,6 @@ class Page extends Model
 
     public function profiles()
     {
-        return $this->belongsToMany(Profile::class)->withPivot(['consult', 'register', 'edit', 'delete']);
+        return $this->belongsToMany(Profile::class)->withPivot(['view', 'create', 'edit', 'delete']);
     }
 }

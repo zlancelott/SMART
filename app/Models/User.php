@@ -47,6 +47,48 @@ class User extends Authenticatable
         return Carbon::parse($this->attributes['created_at'])->format('d/m/Y H:m:i');
     }
 
+    public function isAllowedToView($route)
+    {
+        // dd($route);
+
+        $result = false;
+        $method = explode('.', $route)[1];
+        $permissions = [];
+
+        foreach ($this->profiles as $profile) {
+            foreach ($profile->pages as $page) {
+                foreach ($page->profiles as $p) {
+                    array_push($permissions, [
+                        
+                        'route' => $page->route,
+
+                        // GET
+                        'index' => $p->pivot->view,
+                        'edit' => $p->pivot->edit,
+                        'delete' => $p->pivot->delete,
+                        'create' => $p->pivot->create,
+                        
+                        // POST
+                        'update' => $p->pivot->edit ? 1 : 0,
+                        'store' => $p->pivot->create ? 1 : 0,
+                        'destroy' => $p->pivot->delete ? 1 : 0,
+                    ]);
+                }
+            }
+        }
+
+        // dd($route, $method, $permissions);
+
+        foreach ($permissions as $permission) {
+            if ($permission['route'] == $route && isset($permission[$method]) && $permission[$method] == 1) {
+                $result = true;
+                break;
+            }
+        }
+
+        return $result;
+    }
+
     public function profiles()
     {
         return $this->belongsToMany(Profile::class);

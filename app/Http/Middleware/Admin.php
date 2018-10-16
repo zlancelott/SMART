@@ -16,7 +16,11 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()) {
+        // if(Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()) {
+        //     return $next($request);
+        // }
+
+        if (Auth::user()->isAllowedToView(request()->route()->getName())) {
             return $next($request);
         }
 

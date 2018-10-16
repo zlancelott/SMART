@@ -17,8 +17,8 @@ class CreatePageProfileTable extends Migration
             $table->increments('id');
             $table->integer('profile_id');
             $table->integer('page_id');
-            $table->smallInteger('consult')->default(0);
-            $table->smallInteger('register')->default(0);
+            $table->smallInteger('view')->default(0);
+            $table->smallInteger('create')->default(0);
             $table->smallInteger('edit')->default(0);
             $table->smallInteger('delete')->default(0);
 

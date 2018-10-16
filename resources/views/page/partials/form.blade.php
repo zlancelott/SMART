@@ -13,12 +13,12 @@
             <div class="form-group">
                 {{ Form::label('', 'O que será permitido?') }}
                 <div class="icheck-wetasphalt">
-                    {{ Form::checkbox('consult', 1, isset($page->profiles[0]->pivot) ? $page->profiles[0]->pivot->consult : null, ['id' => 'consult']) }}
-                    <label for="consult">Consultar</label>
+                    {{ Form::checkbox('view', 1, isset($page->profiles[0]->pivot) ? $page->profiles[0]->pivot->view : null, ['id' => 'view']) }}
+                    <label for="view">Visualizar</label>
                 </div>
                 <div class="icheck-wetasphalt">
-                    {{ Form::checkbox('register', 1, isset($page->profiles[0]->pivot) ? $page->profiles[0]->pivot->register : null, ['id' => 'register']) }}
-                    <label for="register">Registrar</label>
+                    {{ Form::checkbox('create', 1, isset($page->profiles[0]->pivot) ? $page->profiles[0]->pivot->create : null, ['id' => 'create']) }}
+                    <label for="create">Registrar</label>
                 </div>
                 <div class="icheck-wetasphalt">
                     {{ Form::checkbox('edit', 1, isset($page->profiles[0]->pivot) ? $page->profiles[0]->pivot->edit : null, ['id' => 'edit']) }}
@@ -34,8 +34,8 @@
                 {{ Form::text('name', null, array('class' => 'form-control')) }}
             </div>
             <div class="form-group">
-                {{ Form::label('url', 'Rota') }}
-                {{ Form::text('url', null, array('class' => 'form-control')) }}
+                {{ Form::label('route', 'Rota') }}
+                {{ Form::text('route', null, array('class' => 'form-control')) }}
             </div>
         </div>
     </div>

@@ -32,7 +32,7 @@
                         @forelse($pages as $page)
                             <tr>
                                 <td>{{ $page->name }}</td>
-                                <td>{{ $page->url }}</td>
+                                <td>{{ $page->route }}</td>
                                 <td>
                                     @foreach ($page->profiles as $profile)
                                         <span class="badge">{{ $profile->name }}</span>
@@ -40,11 +40,11 @@
                                 </td>
                                 <td>
                                     @isset($page->profiles[0]->pivot)
-                                        @if ($page->profiles[0]->pivot->consult)
-                                            <span class="badge">Consultar</span>    
+                                        @if ($page->profiles[0]->pivot->view)
+                                            <span class="badge">Visualizar</span>    
                                         @endif
 
-                                        @if ($page->profiles[0]->pivot->register)
+                                        @if ($page->profiles[0]->pivot->create)
                                             <span class="badge">Registrar</span>    
                                         @endif
 

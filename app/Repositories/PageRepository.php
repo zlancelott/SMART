@@ -23,7 +23,7 @@ class PageRepository
             
             $profile = Profile::find($request['profiles']);
 
-            $page->profiles()->attach($profile, $request->only(['consult', 'register', 'edit', 'delete']));
+            $page->profiles()->attach($profile, $request->only(['view', 'create', 'edit', 'delete']));
 
 			DB::commit();
 
@@ -51,7 +51,7 @@ class PageRepository
 
             $profile = Profile::find($request['profiles']);
 
-            $page->profiles()->attach($profile, $request->only(['consult', 'register', 'edit', 'delete']));
+            $page->profiles()->attach($profile, $request->only(['view', 'create', 'edit', 'delete']));
 
 			DB::commit();
 
