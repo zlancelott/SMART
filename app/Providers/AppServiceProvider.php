@@ -49,6 +49,12 @@ class AppServiceProvider extends ServiceProvider
 
             $event->menu->add('PERFIL');
 
+            $event->menu->add([
+                'text' => 'Meu perfil',
+                'url'  => '/my-profile',
+                'icon' => 'user',
+            ]);
+
         });
     }
 

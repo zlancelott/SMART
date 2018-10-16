@@ -18,15 +18,16 @@ Route::get('/', function () {
 Route::group(['middleware' => ['auth']], function() {
     
     Route::get('/home', 'HomeController@index')->name('home');
+    
     Route::get('/operation', 'OperationController@index')->name('operation');
+    
+    Route::get('my-profile', 'MyProfileController@index')->name('my-profile.index');
+    Route::put('my-profile/{id}', 'MyProfileController@update')->name('my-profile.update');
 
-    // TODO: Criar middleare que verifica o perfil do usuário logado
     Route::group(['middleware' => ['admin']], function() {
-
         Route::resource('user', 'UserController');
         Route::resource('station', 'StationController');
-        Route::resource('profile', 'ProfileController');
-
+        Route::get('profile', 'ProfileController@index')->name('profile.index');
     });
 
 });
