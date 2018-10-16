@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 
-class Profile extends Model
+class Page extends Model
 {
     protected $fillable = [
-        'name', 'initials', 'description'
+        'name', 'url'
     ];
 
     protected $appends = [
@@ -25,13 +25,8 @@ class Profile extends Model
         return Carbon::parse($this->attributes['created_at'])->format('d/m/Y H:m:i');
     }
 
-    public function users()
+    public function profiles()
     {
-        return $this->belongsToMany(User::class);
-    }
-
-    public function pages()
-    {
-        return $this->belongsToMany(Page::class);
+        return $this->belongsToMany(Profile::class)->withPivot(['consult', 'register', 'edit', 'delete']);
     }
 }

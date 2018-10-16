@@ -26,6 +26,8 @@ class AppServiceProvider extends ServiceProvider
                 'icon' => 'home',
             ]);
 
+            // TODO: Verificar se o perfil tem acesso à página em questão
+
             if (Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()) {
 
                 $event->menu->add([
@@ -44,6 +46,12 @@ class AppServiceProvider extends ServiceProvider
                     'text' => 'Perfis',
                     'url'  => '/profile',
                     'icon' => 'male',
+                ]);
+
+                $event->menu->add([
+                    'text' => 'Páginas',
+                    'url'  => '/page',
+                    'icon' => 'file',
                 ]);
             }
 

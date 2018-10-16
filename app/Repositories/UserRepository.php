@@ -2,7 +2,6 @@
 
 namespace App\Repositories;
 
-use App\Models\UserProfile;
 use App\Models\Profile;
 use App\Models\User;
 use Exception;
