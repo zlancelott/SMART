@@ -2,16 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Repositories\UserRepository;
 use App\Http\Requests\UserRequest;
+use Illuminate\Http\Request;
+use App\Models\Profile;
 use App\Models\User;
 use Exception;
 use Auth;
 
 class UserController extends Controller
 {
+    protected $userRep;
 
-    // TODO: Validar ações para SUPERADMIN E ADMIN
+    public function __construct(UserRepository $user)
+    {
+        $this->userRep = $user;
+    }
 
     /**
      * Display a listing of the resource.
@@ -32,7 +38,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('user.create');
+        $profiles = Profile::orderBy('name')->get();
+        
+        return view('user.create', compact('profiles'));
     }
 
     /**
@@ -43,16 +51,14 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
-        try {
-            
-            User::create($request->all());
-        
-            return redirect()->route('user.index')
-                            ->with(['message' => 'Usuário cadastrado com sucesso.', 'class' => 'alert-success']);
-        } catch(Exception $ex) {
+        $user = $this->userRep->save($request);
 
+        if ($user['status']) {
+            return redirect()->route('user.edit', ['id' => $user['id']])
+                             ->with(['message' => $user['message'], 'code' => $user['code']]);
+        } else {
             return redirect()->route('user.create')
-                            ->with(['message' => 'Erro ao cadastrar usuário. Tente novamente.', 'class' => 'alert-danger']);
+                             ->with(['message' => $user['message'], 'code' => $user['code']]);
         }
     }
 
@@ -75,10 +81,9 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        if ($user->profile == config('profiles.superadmin') && !Auth::user()->isSuperAdmin())
-            abort(403, 'Permissão negada.');
+        $profiles = Profile::orderBy('name')->get();
 
-        return view('user.edit', compact('user'));
+        return view('user.edit', compact('user', 'profiles'));
     }
 
     /**
@@ -90,19 +95,14 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, User $user)
     {
-        try {
+        $user = $this->userRep->update($user->id, $request);
 
-            if ($user->profile == config('profiles.superadmin') && !Auth::user()->isSuperAdmin())
-                abort(403, 'Permissão negada.');
-            
-            $user->fill($request->all())->update();
-        
+        if ($user['status']) {
             return redirect()->route('user.edit', ['id' => $user['id']])
-                            ->with(['message' => 'Usuário Editado com sucesso.', 'class' => 'alert-success']);
-        } catch(Exception $ex) {
-
-            return redirect()->route('user.index')
-                            ->with(['message' => 'Erro ao editar usuário. Tente novamente.', 'class' => 'alert-danger']);
+                             ->with(['message' => $user['message'], 'code' => $user['code']]);
+        } else {
+            return redirect()->route('user.edit', ['id' => $user['id']])
+                             ->with(['message' => $user['message'], 'code' => $user['code']]);
         }
     }
 
@@ -119,11 +119,11 @@ class UserController extends Controller
             $user->delete();
         
             return redirect()->route('user.index')
-                            ->with(['message' => 'Usuário deletado com sucesso.', 'class' => 'alert-success']);
+                            ->with(['message' => 'Usuário deletado com sucesso.', 'code' => 'success']);
         } catch(Exception $ex) {
 
             return redirect()->route('user.index')
-                            ->with(['message' => 'Erro ao deletear usuário. Tente novamente.', 'class' => 'alert-danger']);
+                            ->with(['message' => 'Erro ao deletear usuário. Tente novamente.', 'code' => 'danger']);
         }
     }
 }

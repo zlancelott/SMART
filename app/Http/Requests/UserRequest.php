@@ -34,7 +34,6 @@ class UserRequest extends FormRequest
             case 'POST':
             {
                 return [
-                    'profile' => 'required',
                     'name' => 'required|string|max:255',
                     'email' => 'required|string|email|max:255|unique:users',
                     'password' => 'required|min:6|confirmed',
@@ -44,7 +43,6 @@ class UserRequest extends FormRequest
             case 'PATCH':
             {
                 return [
-                    'profile' => 'required',
                     'name' => 'required|string|max:255',
                     'email'      => 'required|unique:users,email,'.$this->user->id,
                     'password'   => 'nullable|min:6|confirmed',

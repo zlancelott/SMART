@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePageAccessTable extends Migration
+class CreateProfileUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,23 +13,19 @@ class CreatePageAccessTable extends Migration
      */
     public function up()
     {
-        Schema::create('page_access', function (Blueprint $table) {
+        Schema::create('profile_user', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id');
             $table->integer('profile_id');
-            $table->integer('page_id');
-            $table->smallInteger('consult')->default(0);
-            $table->smallInteger('register')->default(0);
-            $table->smallInteger('edit')->default(0);
-            $table->smallInteger('delete')->default(0);
-            $table->timestamps();
+
+            $table->foreign('user_id')
+                  ->references('id')->on('users')
+                  ->onDelete('cascade');
 
             $table->foreign('profile_id')
                   ->references('id')->on('profiles')
                   ->onDelete('cascade');
 
-            $table->foreign('page_id')
-                  ->references('id')->on('pages')
-                  ->onDelete('cascade');
         });
     }
 
@@ -40,6 +36,6 @@ class CreatePageAccessTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('page_access');
+        Schema::dropIfExists('profile_user');
     }
 }

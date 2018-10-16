@@ -20,7 +20,7 @@ class User extends Authenticatable
     ];
 
     protected $appends = [
-        'profile_description', 'created', 'updated'
+        'created', 'updated'
     ];
 
     /**
@@ -47,33 +47,8 @@ class User extends Authenticatable
         return Carbon::parse($this->attributes['created_at'])->format('d/m/Y H:m:i');
     }
 
-    public function getProfileDescriptionAttribute()
-    {   
-        switch ($this->attributes['profile']) {
-            
-            case config('profiles.superadmin'):
-                return 'Super administrador';
-            
-            case config('profiles.admin'):
-                return 'Administrador';
-
-            default:
-                return 'Operador';
-        }
-    }
-
-    public function isSuperAdmin()
+    public function profiles()
     {
-        return config('profiles.superadmin') == $this->profile ?: false;
-    }
-
-    public function isAdmin()
-    {
-        return config('profiles.admin') == $this->profile ?: false;
-    }
-
-    public function isOperator()
-    {
-        return config('profiles.operator') == $this->profile ?: false;
+        return $this->belongsToMany(Profile::class);
     }
 }

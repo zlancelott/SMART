@@ -4,7 +4,7 @@
 
 @section('content')
     @if (session('message'))
-        <div class="alert {{ session('class') }} alert-dismissible">
+        <div class="alert alert-{{ session('code') }} alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
             {{ session('message') }}
         </div>
@@ -32,29 +32,19 @@
                             <tr>
                                 <td>{{ sprintf('%03d', $user->id) }}</td>
                                 <td>{{ $user->name }}</td>
-                                <td>{{ $user->profile_description }}</td>
+                                <td>
+                                    @foreach ($user->profiles as $profile)
+                                        <span class="badge">{{ $profile->name }}</span>
+                                    @endforeach
+                                </td>
                                 <td>{{ $user->created }}</td>
                                 <td>{{ $user->updated }}</td>
                                 <td>
+                                    <a href="{{ route('user.edit', $user->id) }}" alt="Editar usuário" title="Editar usuário" class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i></a>
                                     
-                                    {{-- <a href="{{ route('user.show', $user->id) }}" alt="Visualizar informações do usuário" title="Visualizar informações do usuário" class="btn btn-default btn-sm"><i class="fa fa-eye"></i></a>                                     --}}
-                                    
-                                    @if (Auth::user()->isSuperAdmin())
-                                        <a href="{{ route('user.edit', $user->id) }}" alt="Editar usuário" title="Editar usuário" class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i></a>
-
-                                        {{ Form::open(['method' => 'DELETE', 'route' => ['user.destroy', $user->id], 'style' => 'display: inline', 'onsubmit' => 'return confirmDelete()']) }}
-                                            {{ Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-sm', 'alt' => 'Deletar usuário', 'title' => 'Deletar usuário']) }}
-                                        {{ Form::close() }}
-                                    @else
-                                        @if ($user->profile != config('profiles.superadmin'))
-                                            <a href="{{ route('user.edit', $user->id) }}" alt="Editar usuário" title="Editar usuário" class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i></a>
-
-                                            {{ Form::open(['method' => 'DELETE', 'route' => ['user.destroy', $user->id], 'style' => 'display: inline', 'onsubmit' => 'return confirmDelete()']) }}
-                                                {{ Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-sm', 'alt' => 'Deletar usuário', 'title' => 'Deletar usuário']) }}
-                                            {{ Form::close() }}
-                                        @endif
-                                    @endif
-
+                                    {{ Form::open(['method' => 'DELETE', 'route' => ['user.destroy', $user->id], 'style' => 'display: inline', 'onsubmit' => 'return confirmDelete()']) }}
+                                        {{ Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-sm', 'alt' => 'Deletar usuário', 'title' => 'Deletar usuário']) }}
+                                    {{ Form::close() }}
                                 </td>
                             </tr>
                         @endforeach

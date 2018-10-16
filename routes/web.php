@@ -20,13 +20,14 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/operation', 'OperationController@index')->name('operation');
 
-    Route::group(['middleware' => ['admin']], function() {
+    // TODO: Criar middleare que verifica o perfil do usuário logado
+    // Route::group(['middleware' => ['admin']], function() {
 
         Route::resource('user', 'UserController');
         Route::resource('station', 'StationController');
         Route::resource('profile', 'ProfileController');
 
-    });
+    // });
 
 });
 

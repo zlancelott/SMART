@@ -2,14 +2,12 @@
     <div class="row">
         <div class="col-md-12">
             <div class="form-group">
-                {{ Form::label('profile', 'Perfil') }}
-                {{ Form::select('profile', 
-                    [
-                        '' => 'Selecione...', 
-                        config('profiles.superadmin') => 'Super administrador',
-                        config('profiles.admin') => 'Administrador',
-                        config('profiles.operator') => 'Operador',
-                    ], null, ['class' => 'form-control']) }}
+                @foreach ($profiles as $profile)
+                    <div class="icheck-wetasphalt">
+                        {{ Form::checkbox('profiles[]', $profile->id, isset($user) ? $user->profiles : null, ['id' => $profile->initials]) }}
+                        <label for="{{ $profile->initials }}">{{ $profile->name }}</label>
+                    </div>
+                @endforeach
             </div>
             <div class="form-group">
                 {{ Form::label('name', 'Nome') }}

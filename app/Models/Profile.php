@@ -24,4 +24,9 @@ class Profile extends Model
     {
         return Carbon::parse($this->attributes['created_at'])->format('d/m/Y H:m:i');
     }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
 }

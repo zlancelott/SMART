@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Http\Requests\StationRequest;
-use App\Models\Station;
 use App\Repositories\StationRepository;
+use Illuminate\Http\Request;
+use App\Models\Station;
 
 class StationController extends Controller
 {
