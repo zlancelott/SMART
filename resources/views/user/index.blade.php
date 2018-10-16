@@ -21,6 +21,7 @@
                         <tr>
                             <th>Código</th>
                             <th>Nome</th>
+                            <th>Email</th>
                             <th>Perfil</th>
                             <th>Criado em</th>
                             <th>Atualizado em</th>
@@ -32,6 +33,7 @@
                             <tr>
                                 <td>{{ sprintf('%03d', $user->id) }}</td>
                                 <td>{{ $user->name }}</td>
+                                <td>{{ $user->email }}</td>
                                 <td>
                                     @foreach ($user->profiles as $profile)
                                         <span class="badge">{{ $profile->name }}</span>

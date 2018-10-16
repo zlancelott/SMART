@@ -26,8 +26,7 @@ class AppServiceProvider extends ServiceProvider
                 'icon' => 'home',
             ]);
 
-            // TODO: Validar itens do menu com perfil do usuário logado
-            // if (Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()) {
+            if (Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()) {
 
                 $event->menu->add([
                     'text' => 'Usuários',
@@ -46,10 +45,7 @@ class AppServiceProvider extends ServiceProvider
                     'url'  => '/profile',
                     'icon' => 'male',
                 ]);
-            // }
-
-            
-
+            }
 
             $event->menu->add('PERFIL');
 

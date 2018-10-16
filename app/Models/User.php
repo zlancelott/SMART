@@ -51,4 +51,32 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Profile::class);
     }
+
+    public function isSuperAdmin()
+    {
+        $result = false;
+
+        foreach ($this->profiles as $profile) {
+            if ($profile->initials == 'super') {
+                $result = true;
+                break;
+            }
+        }
+
+        return $result;
+    }
+
+    public function isAdmin()
+    {
+        $result = false;
+
+        foreach ($this->profiles as $profile) {
+            if ($profile->initials == 'admin') {
+                $result = true;
+                break;
+            }
+        }
+
+        return $result;
+    }
 }

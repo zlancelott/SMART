@@ -9,7 +9,6 @@
             {{ session('message') }}
         </div>
     @endif
-    <a href="{{ route('profile.create') }}" class="btn btn-danger btn-sm" style="margin-bottom: 10px;">NOVA PERFIL</a>
     <div class="box">
         <div class="box-header with-border">
             <h4 class="box-title">Perfis cadastrados</h4>
@@ -24,7 +23,6 @@
                             <th>Descrição</th>
                             <th>Criado em</th>
                             <th>Atualizado em</th>
-                            <th>Ações</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -35,15 +33,6 @@
                                 <td>{{ $profile->description }}</td>
                                 <td>{{ $profile->created }}</td>
                                 <td>{{ $profile->updated }}</td>
-                                <td>
-                                    
-                                    <a href="{{ route('profile.edit', $profile->id) }}" alt="Editar perfil" title="Editar perfil" class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i></a>
-
-                                    {{ Form::open(['method' => 'DELETE', 'route' => ['profile.destroy', $profile->id], 'style' => 'display: inline', 'onsubmit' => 'return confirmDelete()']) }}
-                                        {{ Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-sm', 'alt' => 'Deletar perfil', 'title' => 'Deletar perfil']) }}
-                                    {{ Form::close() }}
-
-                                </td>
                             </tr>
                         @endforeach
                     </tbody>

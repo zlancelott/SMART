@@ -20,6 +20,6 @@ class Admin
             return $next($request);
         }
 
-        abort(403, 'Permissão negada.');
+        abort(403, 'Você não tem permissão para acessar esta área.');
     }
 }
