@@ -312,15 +312,6 @@ class PagesTableSeeder extends Seeder
             'delete' => 0,
         ]);
 
-        DB::table('page_profile')->insert([
-            'page_id' => 15,
-            'profile_id' => 2, // ADMIN
-            'view' => 1,
-            'create' => 0,
-            'edit' => 0,
-            'delete' => 0,
-        ]);
-
         // ----------------------------------------------------
 
         $this->command->info('Criando permissões para seção de ESTAÇÕES.');
