@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use App\Models\User;
 
 class UsersTableSeeder extends Seeder
 {
@@ -12,6 +13,8 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
+        User::query()->delete();
+
         $this->command->info('Criando usuário do SUPER ADMINISTRADOR.');
 
         factory(App\Models\User::class)->create([

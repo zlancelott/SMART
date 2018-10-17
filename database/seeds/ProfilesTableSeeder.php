@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Models\Profile;
 
 class ProfilesTableSeeder extends Seeder
 {
@@ -11,6 +12,8 @@ class ProfilesTableSeeder extends Seeder
      */
     public function run()
     {
+        Profile::query()->delete();
+
         $this->command->info('Criando perfil de SUPER ADMINISTRADOR.');
 
         factory(App\Models\Profile::class)->create([
