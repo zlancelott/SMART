@@ -483,5 +483,42 @@ class PagesTableSeeder extends Seeder
             'edit' => 0,
             'delete' => 1,
         ]);
+
+        // ----------------------------------------------------
+
+        $this->command->info('Criando permissões para seção de OPERAÇÃO.');
+
+        factory(App\Models\Page::class)->create([
+            'id' => 24,
+            'name' => 'Operation index',
+            'route' => 'operation.index'
+        ]);
+
+        DB::table('page_profile')->insert([
+            'page_id' => 24,
+            'profile_id' => 1, // SUPER ADMIN
+            'view' => 1,
+            'create' => 0,
+            'edit' => 0,
+            'delete' => 0,
+        ]);
+
+        DB::table('page_profile')->insert([
+            'page_id' => 24,
+            'profile_id' => 2, // ADMIN
+            'view' => 1,
+            'create' => 0,
+            'edit' => 0,
+            'delete' => 0,
+        ]);
+
+        DB::table('page_profile')->insert([
+            'page_id' => 24,
+            'profile_id' => 3, // OPERADOR
+            'view' => 1,
+            'create' => 0,
+            'edit' => 0,
+            'delete' => 0,
+        ]);
     }
 }

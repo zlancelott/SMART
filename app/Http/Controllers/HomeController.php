@@ -24,6 +24,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return redirect()->route('operation');
+        return redirect()->route('operation.index');
     }
 }

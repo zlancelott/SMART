@@ -19,39 +19,11 @@ class AppServiceProvider extends ServiceProvider
         $events->listen(BuildingMenu::class, function (BuildingMenu $event) {
 
             $event->menu->add('MENU PRINCIPAL');
-            
-            $event->menu->add([
-                'text' => 'Operação',
-                'url'  => '/operation',
-                'icon' => 'home',
-            ]);
 
-            // TODO: Verificar se o perfil tem acesso à página em questão
-
-            if (Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()) {
-
+            foreach (Auth::user()->getMenu() as $menu) {
                 $event->menu->add([
-                    'text' => 'Usuários',
-                    'url'  => '/user',
-                    'icon' => 'users',
-                ]);
-
-                $event->menu->add([
-                    'text' => 'Estações',
-                    'url'  => '/station',
-                    'icon' => 'bolt',
-                ]);
-
-                $event->menu->add([
-                    'text' => 'Perfis',
-                    'url'  => '/profile',
-                    'icon' => 'male',
-                ]);
-
-                $event->menu->add([
-                    'text' => 'Páginas',
-                    'url'  => '/page',
-                    'icon' => 'file',
+                    'text' => ucfirst(explode('.', $menu)[0]),
+                    'route'  => $menu
                 ]);
             }
 
@@ -62,7 +34,6 @@ class AppServiceProvider extends ServiceProvider
                 'url'  => '/my-profile',
                 'icon' => 'user',
             ]);
-
         });
     }
 

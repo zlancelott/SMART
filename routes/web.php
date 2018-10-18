@@ -16,21 +16,25 @@ Route::get('/', function () {
 });
 
 Route::group(['middleware' => ['auth']], function() {
-    
-    Route::get('/home', 'HomeController@index')->name('home');
-    
-    Route::get('/operation', 'OperationController@index')->name('operation');
-    
+
+    Route::get('/home', 'HomeController@index')->name('home.index');
+
     Route::get('my-profile', 'MyProfileController@index')->name('my-profile.index');
     Route::put('my-profile/{id}', 'MyProfileController@update')->name('my-profile.update');
 
     Route::group(['middleware' => ['permission']], function() {
-        Route::resource('user', 'UserController');
-        Route::resource('station', 'StationController');
-        Route::get('profile', 'ProfileController@index')->name('profile.index');
-        Route::resource('page', 'PageController');
-    });
+    
+        Route::get('/operation', 'OperationController@index')->name('operation.index');
 
+        Route::resource('user', 'UserController');
+
+        Route::resource('station', 'StationController');
+
+        Route::get('profile', 'ProfileController@index')->name('profile.index');
+
+        Route::resource('page', 'PageController');
+
+    });
 });
 
 Auth::routes();

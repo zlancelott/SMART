@@ -47,6 +47,25 @@ class User extends Authenticatable
         return Carbon::parse($this->attributes['created_at'])->format('d/m/Y H:m:i');
     }
 
+    public function getMenu()
+    {
+        $menu = [];
+
+        foreach ($this->profiles as $profile) {
+            foreach ($profile->pages as $page) {
+                foreach ($page->profiles as $p) {
+                    if ($p->pivot->view) {
+                        $menu[$page->route] = $page->route;
+                    }
+                }
+            }
+        }
+
+        sort($menu);
+
+        return $menu;
+    }
+
     public function isAllowedToView($route)
     {
         // dd($route);
