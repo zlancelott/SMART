@@ -25,8 +25,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        activity()
-            ->log('edited oooo');
         return redirect()->route('operation.index');
     }
 }
