@@ -3,10 +3,16 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Carbon\Carbon;
 
 class Page extends Model
 {
+    use LogsActivity;
+    
+    // protected static $logAttributes = ['*'];
+    protected static $logFillable = true;
+
     protected $fillable = [
         'name', 'route'
     ];
