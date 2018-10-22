@@ -10,8 +10,11 @@ class Page extends Model
 {
     use LogsActivity;
     
-    // protected static $logAttributes = ['*'];
+    protected static $logAttributes = ['*'];
+    
     protected static $logFillable = true;
+
+    protected static $logName = 'page';
 
     protected $fillable = [
         'name', 'route'

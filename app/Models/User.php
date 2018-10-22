@@ -4,11 +4,20 @@ namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Carbon\Carbon;
 
 class User extends Authenticatable
 {
     use Notifiable;
+
+    use LogsActivity;
+
+    protected static $logAttributes = ['*'];
+    
+    protected static $logFillable = true;
+
+    protected static $logName = 'user';
 
     /**
      * The attributes that are mass assignable.

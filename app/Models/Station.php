@@ -3,10 +3,19 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Carbon\Carbon;
 
 class Station extends Model
 {
+    use LogsActivity;
+    
+    protected static $logAttributes = ['*'];
+    
+    protected static $logFillable = true;
+
+    protected static $logName = 'station';
+
     protected $fillable = [
         'name', 'type', 'number_readers', 'number_zones'
     ];
