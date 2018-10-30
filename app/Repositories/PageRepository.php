@@ -8,7 +8,7 @@ use Exception;
 use DB;
 use Auth;
 
-class PageRepository
+class PageRepository extends LogRepository
 {
     public function update($id, $request)
     {

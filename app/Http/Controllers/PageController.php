@@ -24,6 +24,8 @@ class PageController extends Controller
      */
     public function index()
     {
+        // $this->pageRep->hello();
+
         $pages = Page::orderBy('name')->paginate(30);
 
         return view('page.index', compact('pages'));
