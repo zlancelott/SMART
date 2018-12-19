@@ -13,7 +13,7 @@ class ReaderData extends Model
     
     protected static $logFillable = true;
 
-    protected static $logName = 'reader_data';
+    protected static $logName = 'reader_datas';
 
     protected $fillable = [
         'reader_id', 'date', 'code'

@@ -36,7 +36,7 @@ class Station extends Model
 
     public function getUpdatedAttribute()
     {
-        return Carbon::parse($this->attributes['created_at'])->format('d/m/Y H:m:i');
+        return Carbon::parse($this->attributes['updated_at'])->format('d/m/Y H:m:i');
     }
 
     public function getCreatedAttribute()

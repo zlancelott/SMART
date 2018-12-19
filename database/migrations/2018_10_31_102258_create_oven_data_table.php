@@ -20,7 +20,7 @@ class CreateOvenDataTable extends Migration
             $table->timestamps();
 
             $table->foreign('reader_data_id')
-                  ->references('id')->on('reader_data')
+                  ->references('id')->on('reader_datas')
                   ->onDelete('cascade');
         });
     }

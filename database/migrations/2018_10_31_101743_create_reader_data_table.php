@@ -13,7 +13,7 @@ class CreateReaderDataTable extends Migration
      */
     public function up()
     {
-        Schema::create('reader_data', function (Blueprint $table) {
+        Schema::create('reader_datas', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('reader_id');
             $table->date('date');
@@ -33,6 +33,6 @@ class CreateReaderDataTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reader_data');
+        Schema::dropIfExists('reader_datas');
     }
 }

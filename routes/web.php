@@ -35,6 +35,9 @@ Route::group(['middleware' => ['auth']], function() {
         Route::resource('page', 'PageController');
 
     });
+
+    // Chamadas Ajax
+    Route::get('station/get-informations/{id}', 'StationController@getInformations')->name('station.getInformations');
 });
 
 Auth::routes();

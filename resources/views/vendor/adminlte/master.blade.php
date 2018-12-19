@@ -70,6 +70,5 @@
 
 {{ Html::script('js/util.js') }}
 {{ Html::script('js/faker.min.js') }}
-
 </body>
 </html>

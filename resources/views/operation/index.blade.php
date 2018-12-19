@@ -120,17 +120,12 @@
                 </div>
                 <script>
                     $(function () {
-
-                        setData(
-                                {{ $station->id }}, $('#serial{{ $station->id }} span'), 
-                                $('#dataEntrada{{ $station->id }} span'), $('#dataSaida{{ $station->id }} span'))
-
-                        setInterval(() =>
-
-                            setData(
-                                {{ $station->id }}, $('#serial{{ $station->id }} span'), 
-                                $('#dataEntrada{{ $station->id }} span'), $('#dataSaida{{ $station->id }} span')), 3000)
-
+                        getData(
+                            {{ $station->id }}, 
+                            $('#serial{{ $station->id }} span'), 
+                            $('#dataEntrada{{ $station->id }} span'), 
+                            $('#dataSaida{{ $station->id }} span')
+                        );
                     });
                 </script>
             @endif
@@ -145,13 +140,13 @@
 
         $(function () {
 
-            var estacoes = [];
+            // var estacoes = [];
 
-            @foreach ($stations as $station)
-                estacoes.push({{ $station->id }});
-            @endforeach
+            // @foreach ($stations as $station)
+            //     estacoes.push({{ $station->id }});
+            // @endforeach
 
-            setInterval(() => setDanger(estacoes), 7000);
+            // setInterval(() => setDanger(estacoes), 7000);
 
         });
 
@@ -197,6 +192,46 @@
                 mes = "0" + mes;
             
             return dia + "/" + mes + "/" + ano + " " + data.getHours() + ":" + minutos + ":" + data.getSeconds();
+        }
+
+        // $scope.init = function () {
+        //     $http.get(window.urlOrder)
+        //         .then(function (response) {
+        //             console.log(response);
+        //             if (response.status == 200) {
+        //                 $scope.numberOrders = response.data.orders.length;
+        //                 $scope.orders = response.data.orders;
+        //             }
+        //             $scope.run();
+        //         }).catch(function (e) {
+        //             $scope.run();
+        //         });
+        // };
+
+        function iniGetData(estacaoId, serial, dataEntrada, dataSaida) {
+            setTimeout(() => {
+                getData(estacaoId, serial, dataEntrada, dataSaida);
+            }, 3000);
+        };
+
+        function getData(estacaoId, serial, dataEntrada, dataSaida) {
+            $.ajax({
+                method: 'get',
+                url: '{{ url('station/get-informations') }}/' + estacaoId,
+                success: function(response, status, data) {
+                    if (data.status == 200 && response.information) {
+                        console.log('success: ', response.information);
+                        $(serial).text(response.information.code);
+                        $(dataEntrada).text(response.information.date);
+                        $(dataSaida).text(response.information.date);
+                    }
+                    iniGetData(estacaoId, serial, dataEntrada, dataSaida);
+                },
+                error: function(data) {
+                    console.log('error: ', data);
+                    iniGetData(estacaoId, serial, dataEntrada, dataSaida);
+                }
+            });
         }
 
         function setData(estacaoId, serial, dataEntrada, dataSaida, numeroEstacoes) {

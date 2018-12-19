@@ -6,6 +6,8 @@ use App\Http\Requests\StationRequest;
 use App\Repositories\StationRepository;
 use Illuminate\Http\Request;
 use App\Models\Station;
+use App\Models\Reader;
+use App\Models\ReaderData;
 
 class StationController extends Controller
 {
@@ -118,5 +120,18 @@ class StationController extends Controller
             return redirect()->route('station.index')
                             ->with(['message' => 'Erro ao deletear estação. Tente novamente.', 'class' => 'alert-danger']);
         }
+    }
+
+    public function getInformations(Request $request) 
+    {
+        $readers = Reader::where('station_id', '=', $request['id'])->get(['id'])->toArray();
+
+        // dd($readers);
+
+        $lastInformation = ReaderData::whereIn('reader_id', $readers)->orderBy('created_at', 'desc')->first();
+
+        // dd($lastInformation->code);
+        
+        return response()->json(['information' => $lastInformation]);
     }
 }
