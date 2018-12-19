@@ -14,7 +14,7 @@ class CreateReaderDataTable extends Migration
     public function up()
     {
         Schema::create('reader_datas', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id'); 
             $table->unsignedInteger('reader_id');
             $table->date('date');
             $table->text('code');
