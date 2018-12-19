@@ -8,13 +8,13 @@ use Carbon\Carbon;
 
 class Page extends Model
 {
-    use LogsActivity;
+    // use LogsActivity;
     
-    protected static $logAttributes = ['*'];
+    // protected static $logAttributes = ['*'];
     
-    protected static $logFillable = true;
+    // protected static $logFillable = true;
 
-    protected static $logName = 'page';
+    // protected static $logName = 'page';
 
     protected $fillable = [
         'name', 'route'

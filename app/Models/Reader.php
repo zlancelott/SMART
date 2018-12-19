@@ -7,13 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Reader extends Model
 {
-    use LogsActivity;
+    // use LogsActivity;
     
-    protected static $logAttributes = ['*'];
+    // protected static $logAttributes = ['*'];
     
-    protected static $logFillable = true;
+    // protected static $logFillable = true;
 
-    protected static $logName = 'reader';
+    // protected static $logName = 'reader';
 
     protected $fillable = [
         'station_id', 'ip', 'type', 'position'

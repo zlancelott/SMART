@@ -11,13 +11,13 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    use LogsActivity;
+    // use LogsActivity;
 
-    protected static $logAttributes = ['*'];
+    // protected static $logAttributes = ['*'];
     
-    protected static $logFillable = true;
+    // protected static $logFillable = true;
 
-    protected static $logName = 'user';
+    // protected static $logName = 'user';
 
     /**
      * The attributes that are mass assignable.
