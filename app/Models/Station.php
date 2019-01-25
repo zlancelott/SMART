@@ -9,6 +9,8 @@ use Carbon\Carbon;
 class Station extends Model
 {
     use LogsActivity;
+
+    protected $primaryKey = 'stationId';
     
     protected static $logAttributes = ['*'];
     
