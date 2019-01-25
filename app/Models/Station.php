@@ -10,8 +10,6 @@ class Station extends Model
 {
     use LogsActivity;
 
-    protected $primaryKey = 'stationId';
-    
     // protected static $logAttributes = ['*'];
     
     // protected static $logFillable = true;
