@@ -89,7 +89,7 @@
                             setData(
                                 {{ $station->id }}, $('#serial{{ $station->id }} span'), 
                                 $('#dataEntrada{{ $station->id }} span'), $('#dataSaida{{ $station->id }} span'), 
-                                {{ $station->number_zones }}), 3000)
+                                {{ $station->number_zones }}), 1000)
 
                     });
                 </script>
