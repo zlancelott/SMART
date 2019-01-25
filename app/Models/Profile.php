@@ -8,13 +8,13 @@ use Carbon\Carbon;
 
 class Profile extends Model
 {
-    use LogsActivity;
+    // use LogsActivity;
     
-    protected static $logAttributes = ['*'];
+    // protected static $logAttributes = ['*'];
     
-    protected static $logFillable = true;
+    // protected static $logFillable = true;
 
-    protected static $logName = 'profile';
+    // protected static $logName = 'profile';
     
     protected $fillable = [
         'name', 'initials', 'description'

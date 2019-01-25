@@ -12,11 +12,11 @@ class Station extends Model
 
     protected $primaryKey = 'stationId';
     
-    protected static $logAttributes = ['*'];
+    // protected static $logAttributes = ['*'];
     
-    protected static $logFillable = true;
+    // protected static $logFillable = true;
 
-    protected static $logName = 'station';
+    // protected static $logName = 'station';
 
     protected $fillable = [
         'name', 'type', 'number_readers', 'number_zones'
