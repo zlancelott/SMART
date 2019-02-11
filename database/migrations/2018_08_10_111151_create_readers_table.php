@@ -15,7 +15,7 @@ class CreateReadersTable extends Migration
     {
         Schema::create('readers', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('station_id');
+            $table->unsignedInteger('station_id');
             $table->string('ip');
             $table->string('type');
             $table->smallInteger('position');

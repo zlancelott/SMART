@@ -40,7 +40,7 @@
             </div>
         </div>
         <div class="box-footer clearfix">
-              {{ ($profiles != null)? $profiles->links(): null }}
+              {{ ($profiles != null)? $profiles->links(): "null" }}
         </div>
     </div>
 @stop

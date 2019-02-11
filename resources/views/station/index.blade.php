@@ -33,7 +33,7 @@
                         @forelse($stations as $station)
                             <tr>
                                 <td>{{ sprintf('%03d', $station->id) }}</td>
-                                <td>{{ $station->name }}</td>
+                                <td><a href="station/get-informations/{{$station->id}}">{{ $station->name }}</a></td>
                                 <td>{{ $station->number_readers }}</td>
                                 <td>{{ $station->number_zones }}</td>
                                 <td>{{ $station->type_description }}</td>

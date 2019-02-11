@@ -107,7 +107,7 @@
                                         <div class="box-footer no-padding">
                                             <ul class="nav nav-stacked">
                                                 <li id="serial{{ $station->id }}"><a href="#">Serial <span class="pull-right badge bg-gray"></span></a></li>
-                                                <li id="dataEntrada{{ $station->id }}"><a href="#">Data entrada<span class="pull-right badge bg-gray"></span></a></li>
+                                                <li id="dataEntrada{{ $station->id }}"><a href="#">Data entrada<span class="pull-right badge bg-gray">{{ $station->created_at }}</span></a></li>
                                                 <li id="dataSaida{{ $station->id }}"><a href="#">Data saída<span class="pull-right badge bg-gray"></span></a></li>
                                             </ul>
                                         </div>

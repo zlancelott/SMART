@@ -12,7 +12,7 @@
     <a href="{{ route('user.create') }}" class="btn btn-danger btn-sm" style="margin-bottom: 10px;">NOVO USUÁRIO</a>
     <div class="box">
         <div class="box-header with-border">
-            <h4 class="box-title">Usuário cadastrados</h4>
+            <h4 class="box-title">Usuários cadastrados</h4>
         </div>
         <div class="box-body no-padding">
             <div class="table-responsive">
@@ -44,9 +44,12 @@
                                 <td>
                                     <a href="{{ route('user.edit', $user->id) }}" alt="Editar usuário" title="Editar usuário" class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i></a>
                                     
-                                    {{ Form::open(['method' => 'DELETE', 'route' => ['user.destroy', $user->id], 'style' => 'display: inline', 'onsubmit' => 'return confirmDelete()']) }}
-                                        {{ Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-sm', 'alt' => 'Deletar usuário', 'title' => 'Deletar usuário']) }}
-                                    {{ Form::close() }}
+                                    {{-- Está errado este if ........ --}}
+                                    @if (Auth::user()->id <= $user->id)
+                                        {{ Form::open(['method' => 'DELETE', 'route' => ['user.destroy', $user->id], 'style' => 'display: inline', 'onsubmit' => 'return confirmDelete()']) }}
+                                            {{ Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-sm', 'alt' => 'Deletar usuário', 'title' => 'Deletar usuário']) }}
+                                        {{ Form::close() }}
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach

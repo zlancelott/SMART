@@ -25,7 +25,7 @@ class StationController extends Controller
      */
     public function index()
     {
-        $stations = Station::with('readers')->paginate(30);
+        $stations = Station::with('readers')->paginate(10);
 
         return view('station.index', compact('stations'));
     }

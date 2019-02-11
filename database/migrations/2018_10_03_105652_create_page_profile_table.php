@@ -15,8 +15,8 @@ class CreatePageProfileTable extends Migration
     {
         Schema::create('page_profile', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('profile_id');
-            $table->integer('page_id');
+            $table->unsignedInteger('profile_id');
+            $table->unsignedInteger('page_id');
             $table->smallInteger('view')->default(0);
             $table->smallInteger('create')->default(0);
             $table->smallInteger('edit')->default(0);

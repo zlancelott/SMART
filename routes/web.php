@@ -40,5 +40,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('station/get-informations/{id}', 'StationController@getInformations')->name('station.getInformations');
 });
 
+Route::get('report', 'ReportController@create');
+
 Auth::routes();
 
